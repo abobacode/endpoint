@@ -1,0 +1,11 @@
+server:
+  database:
+    host: localhost:3333
+    user: root
+    password: verysecret
+    name: pudge
+    dialect: mysql
+    debug: false
+    max_open_conns: 50
+    max_idle_conns: 45
+    max_conn_max_lifetime: 10m0s
