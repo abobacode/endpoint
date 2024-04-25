@@ -1,9 +1,9 @@
 server:
   database:
-    host: localhost:3333
+    host: localhost:1111
     user: root
     password: verysecret
-    name: pudge
+    name: ads
     dialect: mysql
     debug: false
     max_open_conns: 50

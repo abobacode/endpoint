@@ -3,14 +3,14 @@ package signal
 import (
 	"context"
 	"fmt"
-	"github.com/abobacode/endpoint/pkg/log"
-
 	"net"
 	"os"
 	"strings"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+
+	"github.com/abobacode/endpoint/pkg/log"
 )
 
 const (

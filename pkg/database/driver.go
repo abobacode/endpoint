@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/abobacode/endpoint/pkg/xerror"
 	"log"
 	"strings"
 	"time"
@@ -13,6 +12,8 @@ import (
 	// nolint:golint // reason
 	_ "github.com/doug-martin/goqu/v9/dialect/mysql"
 	_ "github.com/go-sql-driver/mysql"
+
+	"github.com/abobacode/endpoint/pkg/xerror"
 )
 
 type Driver interface {

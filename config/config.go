@@ -2,10 +2,11 @@ package config
 
 import (
 	"bytes"
-	"github.com/abobacode/endpoint/pkg/database"
 	"os"
 
 	"gopkg.in/yaml.v3"
+
+	"github.com/abobacode/endpoint/pkg/database"
 )
 
 type Server struct {

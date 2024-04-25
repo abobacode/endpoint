@@ -3,15 +3,15 @@ package mysql
 import (
 	"context"
 	"database/sql"
-	"github.com/abobacode/endpoint/pkg/database"
-	"github.com/abobacode/endpoint/pkg/log"
 	"time"
 
 	builder "github.com/doug-martin/goqu/v9"
-
 	// nolint:golint // it's OK
 	_ "github.com/doug-martin/goqu/v9/dialect/mysql"
 	_ "github.com/go-sql-driver/mysql"
+
+	"github.com/abobacode/endpoint/pkg/database"
+	"github.com/abobacode/endpoint/pkg/log"
 )
 
 type ConnectionPool struct {

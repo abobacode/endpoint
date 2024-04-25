@@ -3,10 +3,11 @@ package drop
 import (
 	"context"
 	"fmt"
-	"github.com/abobacode/endpoint/pkg/log"
 	"runtime"
 	"strconv"
 	"time"
+
+	"github.com/abobacode/endpoint/pkg/log"
 )
 
 type Impl struct {

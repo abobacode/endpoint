@@ -1,15 +1,15 @@
 version: '3.2'
 services:
   db:
-    container_name: db-pudge
+    container_name: db-ads
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=verysecret
-      - MYSQL_DATABASE=pudge
+      - MYSQL_DATABASE=ads
       - MYSQL_USER=user
       - MYSQL_PASSWORD=secret
     ports:
-      - "3333:3306"
+      - "1111:3306"
     volumes:
       - ../../.data/db:/var/lib/mysql
     command: [

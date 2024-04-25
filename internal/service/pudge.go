@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+
 	"github.com/abobacode/endpoint/pkg/database"
 	"github.com/abobacode/endpoint/pkg/database/mysql"
 	"github.com/abobacode/endpoint/pkg/drop"
@@ -13,12 +14,7 @@ type Options struct {
 
 type Pudge struct {
 	*drop.Impl
-	driver *database.Connector
-	Pool   database.Pool
-}
-
-func (p *Pudge) Conn() *database.Connector {
-	return p.driver
+	Pool database.Pool
 }
 
 func New(ctx context.Context, opt *Options) (*Pudge, error) {
