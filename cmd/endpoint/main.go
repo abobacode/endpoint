@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"log"
 	"os"
 
@@ -15,7 +16,7 @@ import (
 	"github.com/abobacode/endpoint/pkg/signal"
 )
 
-const title = "API Vod Ads"
+const title = "API For Example"
 
 func main() {
 	application := cli.App{
@@ -56,7 +57,7 @@ func Main(ctx *cli.Context) error {
 	appContext, cancel := context.WithCancel(ctx.Context)
 	defer func() {
 		cancel()
-		log.Println("app context is canceled, Ads VOD Service is down!")
+		log.Println("app context is canceled, service is down!")
 	}()
 
 	cfg, err := config.New(ctx.String("config-file"))
@@ -64,7 +65,9 @@ func Main(ctx *cli.Context) error {
 		return err
 	}
 
-	pudge, err := service.New(context.Background(), &service.Options{
+	apiKey := flag.String("api-key", cfg.YouTube.ApiKey, "YouTube API Key")
+
+	point, err := service.New(context.Background(), &service.Options{
 		Database: &cfg.Database,
 	})
 	if err != nil {
@@ -72,20 +75,20 @@ func Main(ctx *cli.Context) error {
 	}
 
 	defer func() {
-		pudge.Shutdown(func(err error) {
+		point.Shutdown(func(err error) {
 			stdout.Warning(err)
 		})
-		pudge.Stacktrace()
+		point.Stacktrace()
 	}()
 
 	await, stop := signal.Notifier(func() {
-		log.Println("Asd VOD Service start shutdown process..")
+		log.Println("Service start shutdown process..")
 	})
 
-	adsCase := usecase.NewAdsVod(repo.New(pudge.Pool))
+	pointCase := usecase.NewApp(repo.New(point.Pool))
 
 	go func() {
-		if err := adsCase.App(appContext, ctx, pudge); err != nil {
+		if err := pointCase.App(point.Context(), appContext, ctx, apiKey); err != nil {
 			stop(err)
 		}
 	}()

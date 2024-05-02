@@ -1,11 +1,13 @@
 server:
   database:
-    host: localhost:1111
+    host: localhost:9000
     user: root
-    password: verysecret
-    name: ads
+    password: qwerty
+    name: data
     dialect: mysql
     debug: false
     max_open_conns: 50
     max_idle_conns: 45
     max_conn_max_lifetime: 10m0s
+  youtube:
+    api_key:

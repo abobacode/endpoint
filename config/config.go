@@ -11,6 +11,11 @@ import (
 
 type Server struct {
 	Database database.Opt `yaml:"database"`
+	YouTube  YouTube      `yaml:"youtube"`
+}
+
+type YouTube struct {
+	ApiKey string `yaml:"api_key"`
 }
 
 type Config struct {

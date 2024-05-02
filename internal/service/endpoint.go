@@ -12,23 +12,23 @@ type Options struct {
 	Database *database.Opt
 }
 
-type Pudge struct {
+type Endpoint struct {
 	*drop.Impl
 	Pool database.Pool
 }
 
-func New(ctx context.Context, opt *Options) (*Pudge, error) {
+func New(ctx context.Context, opt *Options) (*Endpoint, error) {
 	var err error
-	pudge := &Pudge{}
-	pudge.Impl = drop.NewContext(ctx)
+	endpoint := &Endpoint{}
+	endpoint.Impl = drop.NewContext(ctx)
 
 	if opt.Database != nil {
-		pudge.Pool, err = mysql.New(pudge.Context(), opt.Database)
+		endpoint.Pool, err = mysql.New(endpoint.Context(), opt.Database)
 		if err != nil {
 			return nil, err
 		}
-		pudge.AddDropper(pudge.Pool.(*mysql.ConnectionPool))
+		endpoint.AddDropper(endpoint.Pool.(*mysql.ConnectionPool))
 	}
 
-	return pudge, nil
+	return endpoint, nil
 }

@@ -13,19 +13,32 @@ type Repo struct {
 	database database.Pool
 }
 
-func (r *Repo) FetchAdsBlock(ctx context.Context, id int) ([]models.AdsStruct, error) {
-	var ads []models.AdsStruct
+func (r *Repo) FetchDataBlock(ctx context.Context, id int) ([]models.DataStruct, error) {
+	var data []models.DataStruct
 
 	err := r.database.Builder().
 		Select(builder.L("*")).
-		From("ads").
-		Where(builder.C("video_id").Eq(id)).
-		ScanStructsContext(ctx, &ads)
+		From("data").
+		Where(builder.C("id").Eq(id)).
+		ScanStructsContext(ctx, &data)
 	if err != nil {
 		return nil, err
 	}
 
-	return ads, nil
+	return data, nil
+}
+
+func (r *Repo) SaveDataBlock(ctx context.Context, data []models.DataStruct) error {
+	_, err := r.database.Builder().
+		Insert("youtube").
+		Rows(data).
+		Executor().
+		ExecContext(ctx)
+	if err != nil {
+		return err
+	}
+
+	return err
 }
 
 func New(db database.Pool) *Repo {

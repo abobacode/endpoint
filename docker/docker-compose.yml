@@ -1,15 +1,15 @@
 version: '3.2'
 services:
   db:
-    container_name: db-ads
+    container_name: db-data
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=verysecret
-      - MYSQL_DATABASE=ads
+      - MYSQL_ROOT_PASSWORD=qwerty
+      - MYSQL_DATABASE=data
       - MYSQL_USER=user
       - MYSQL_PASSWORD=secret
     ports:
-      - "1111:3306"
+      - "9000:3306"
     volumes:
       - ../../.data/db:/var/lib/mysql
     command: [
